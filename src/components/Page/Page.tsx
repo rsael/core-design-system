@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
 import './page.css';
-import { PageProps } from "./Page.d";
+import { PageProps } from "./Page.types";
 
 
 const Page = ({ user, onLogin, onLogout, onCreateAccount }: PageProps) => (

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "declaration": true,
-    "declarationDir": "dist",
-    "target": "ESNext",
+    "declarationDir": "dist/types",
+    "target": "ES5",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": false,
@@ -16,8 +17,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
+    "outDir": "dist"
   },
-  "include": ["./src"],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "dist",
