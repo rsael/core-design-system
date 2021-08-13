@@ -1,22 +1,21 @@
+import React from "react";
+
 export interface ButtonProps {
     /**
      * Is this the principal call to action on the page?
      */
-    primary?: boolean;
-    /**
-     * What background color to use
-     */
-    backgroundColor?: string;
+    kind?: "primary" | "secondary";
     /**
      * How large should the button be?
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: 'sm' | 'md' | 'lg';
+
     /**
-     * Button contents
+     * Passed in children
      */
-    label: string;
+    children: React.ReactNode;
     /**
-     * Optional click handler
-     */
+    * Optional click handler
+    */
     onClick?: () => void;
 }
