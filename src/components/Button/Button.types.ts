@@ -13,7 +13,7 @@ export interface ButtonProps {
     /**
      * Passed in children
      */
-    children: React.ReactNode;
+    children?: React.ReactNode;
     /**
     * Optional click handler
     */

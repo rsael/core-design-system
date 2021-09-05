@@ -1,36 +1,26 @@
 import React from "react";
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 import { ButtonProps } from "./Button.types";
 
-const ButtonStyled = styled.button<ButtonProps>`
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border: 0;
-  border-radius: 3em;
-  cursor: pointer;
-  display: inline-block;
-  padding: 11px 20px;
-  line-height: 1;
+const ButtonStyled = styled.button((props: ButtonProps) => [
+  // The common button styles added with the tw import
+  tw`px-8 py-2 duration-75 transform rounded-lg focus:outline-none`,
 
-  ${({ kind }) =>
-    kind === "primary"
-      ? `color: white;
-        background-color: #1ea7fd;`
-      : `color: #333;
-    background-color: transparent;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-  `}
+  // Use the variant grouping feature to add variants to multiple classes
+  tw`hocus:(scale-105 font-bold)`,
 
-  ${({ size }) =>
-    size === "sm" &&
-    `font-size: 12px;
-    padding: 10px 16px;`}
+  // Use props to conditionally style your components
+  props.kind === "primary" && tw`text-white bg-primary`,
 
-  ${({ size }) =>
-    size === "lg" &&
-    `font-size: 16px;
-    padding: 12px 24px;`}
-`;
+  // Combine regular css with tailwind classes within backticks
+  props.kind === "secondary" && [tw`border-2 border-yellow-600`],
+
+  // Conditional props can be used
+  props.size === "sm" && tw`px-4 py-1 text-sm`,
+  props.size === "lg" && tw`px-12 py-3`,
+
+  // The theme import can supply values from your tailwind.config.js
+]);
 
 /**
  * Primary UI component for user interaction
