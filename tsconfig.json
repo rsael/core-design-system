@@ -2,26 +2,16 @@
   "compilerOptions": {
     "rootDir": "src",
     "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "dist/types",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowSyntheticDefaultImports": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
     "jsx": "react",
     "target": "ESNext",
     "module": "ESNext",
     "strict": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "outDir": "dist",
-    // Ensure that Babel can safely transpile files in the TypeScript project
-    "isolatedModules": true
+    "outDir": "dist"
   },
-  "include": ["src", "types"],
+  "include": ["src", "typings"],
   "exclude": [
     "node_modules",
     "dist",

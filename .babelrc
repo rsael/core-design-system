@@ -4,15 +4,5 @@
     "@babel/preset-typescript",
     "@babel/preset-env"
   ],
-  "plugins": [
-    "babel-plugin-styled-components",
-    [
-      "babel-plugin-macros",
-      {
-        "twin": {
-          "preset": "styled-components"
-        }
-      }
-    ]
-  ]
+  "plugins": ["babel-plugin-macros"]
 }
