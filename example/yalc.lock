@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "core-design-system": {
+      "signature": "89d7890dde4922c817a78dc49a0016f2",
+      "file": true
+    }
+  }
+}
