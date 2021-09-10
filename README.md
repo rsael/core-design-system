@@ -5,16 +5,16 @@ Reusable React components
 
 ## Getting Started
 
- Install dependencies using **yarn** or **npm**
+ Install dependencies using **yarn**
   
   ```
-  npm install
+  yarn install
   ```
 
  Start Storybook
 
   ```
-  npm start
+  yarn start
   ```
 
   Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
@@ -22,5 +22,5 @@ Reusable React components
  Build for production
 
   ```
-  npm run build
+  yarn build
   ```

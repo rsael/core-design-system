@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "npm run storybook",
+    "start": "yarn storybook",
     "build": "rm -rf dist && rollup -c",
     "build:babel": "babel src --extensions '.tsx' --out-dir 'dist' --source-maps --copy-files",
     "storybook": "start-storybook -p 6006",
