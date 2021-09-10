@@ -25,8 +25,8 @@ export default [
             babel({
                 babelHelpers: "bundled",
                 presets: ["@babel/preset-env", "@babel/preset-react"],
-                plugins: ["babel-plugin-macros"],
-                extensions: [".tsx",".ts"],
+                plugins: ["babel-plugin-macros", "babel-plugin-styled-components"],
+                extensions: [".tsx", ".ts"],
                 exclude: ["node_modules/**"],
             }),
             resolve({ preferBuiltins: true }),
