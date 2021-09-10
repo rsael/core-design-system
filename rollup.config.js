@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
 import json from "@rollup/plugin-json";
+import PeerDepsExternal from "rollup-plugin-peer-deps-external";
 import pkg from "./package.json";
 
 export default [
@@ -21,6 +22,7 @@ export default [
             },
         ],
         plugins: [
+            PeerDepsExternal(),
             typescript({ tsconfig: "tsconfig.json" }),
             babel({
                 babelHelpers: "bundled",
@@ -31,10 +33,7 @@ export default [
             }),
             resolve({ preferBuiltins: true }),
             commonjs(),
-            json()
-        ],
-        external: [
-            ...Object.keys(pkg.peerDependencies || {}),
-        ],
+            json(),
+        ]
     },
 ];
