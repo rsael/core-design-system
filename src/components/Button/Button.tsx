@@ -1,5 +1,6 @@
 import React from "react";
-import tw, { styled } from "twin.macro";
+import tw from "twin.macro";
+import styled from "styled-components";
 import { ButtonProps } from "./Button.types";
 
 const ButtonStyled = styled.button((props: ButtonProps) => [
