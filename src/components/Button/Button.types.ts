@@ -8,7 +8,7 @@ export interface ButtonProps {
     /**
      * How large should the button be?
      */
-    size?: 'sm' | 'md' | 'lg';
+    size?: "sm" | "md" | "lg";
 
     /**
      * Passed in children

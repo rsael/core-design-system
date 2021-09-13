@@ -4,36 +4,36 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Button from "./Button";
 
 export default {
-  title: "Example/Button",
-  component: Button,
-  argTypes: {
-    backgroundColor: { control: "color" },
-    onClick: { action: "clicked" },
-  },
+	title: "Example/Button",
+	component: Button,
+	argTypes: {
+		backgroundColor: { control: "color" },
+		onClick: { action: "clicked" },
+	},
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  kind: "primary",
-  children: "Button",
+	kind: "primary",
+	children: "Button",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  kind: "secondary",
-  children: "Button",
+	kind: "secondary",
+	children: "Button",
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  size: "lg",
-  children: "Button",
+	size: "lg",
+	children: "Button",
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  size: "sm",
-  children: "Button",
+	size: "sm",
+	children: "Button",
 };
