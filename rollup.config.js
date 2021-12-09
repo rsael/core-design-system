@@ -4,6 +4,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
 import json from "@rollup/plugin-json";
 import PeerDepsExternal from "rollup-plugin-peer-deps-external";
+import svgr from "@svgr/rollup";
 import pkg from "./package.json";
 
 export default [
@@ -34,6 +35,7 @@ export default [
             resolve({ preferBuiltins: true }),
             commonjs(),
             json(),
+            svgr(),
         ]
     },
 ];
