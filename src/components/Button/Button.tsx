@@ -1,43 +1,46 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { ButtonProps } from "./Button.types";
+import Icon from "../../assets/icons/icon_24.svg";
 
-const ButtonStyled = styled.button((props: ButtonProps) => [
-	// The common button styles added with the tw import
-	tw`px-8 py-2 duration-75 transform rounded-lg focus:outline-none`,
+export interface ButtonProps {
+	kind?: "primary" | "secondary";
+	size?: "sm" | "md" | "lg";
+	children?: ReactNode;
+	hasIcon?: boolean;
+	icon?: ReactNode;
+	onClick?: () => void;
+}
 
-	// Use the variant grouping feature to add variants to multiple classes
-	tw`hocus:(scale-105 font-bold)`,
-
-	// Use props to conditionally style your components
-	props.kind === "primary" && tw`text-white bg-primary`,
-
-	// Combine regular css with tailwind classes within backticks
-	props.kind === "secondary" && [tw`border-2 border-yellow-600`],
-
-	// Conditional props can be used
-	props.size === "sm" && tw`px-4 py-1 text-sm`,
+const StyledButton = styled.button((props: ButtonProps) => [
+	tw`flex items-center px-8 py-2 transition duration-75 transform rounded-md focus:outline-none`,
+	props.kind === "secondary" ? tw`border border-yellow-600` : tw`text-white bg-blue-400`,
+	props.size === "sm" && tw`px-4 text-sm`,
 	props.size === "lg" && tw`px-12 py-3`,
-
-	// The theme import can supply values from your tailwind.config.js
 ]);
 
-/**
- * Primary UI component for user interaction
- */
+const IconContainer = styled.div(() => [
+	tw`flex items-center justify-center mr-2`
+]);
 
-const Button: React.FC<ButtonProps> = ({
-	kind = "primary",
-	size = "md",
-	children = "Button",
-	...props
-}) => {
+
+const Button = ({ children, hasIcon, icon, ...props }: ButtonProps): JSX.Element => {
 	return (
-		<ButtonStyled kind={kind} size={size} {...props}>
-			{children}
-		</ButtonStyled>
+		<StyledButton {...props}>
+			{hasIcon &&
+				<IconContainer>
+					{icon ? icon : <Icon />}
+				</IconContainer>
+			}
+			{children || "Button"}
+		</StyledButton>
 	);
+};
+
+Button.defaultProps = {
+	size: "md",
+	kind: "primary",
+	hasIcon: false
 };
 
 export default Button;

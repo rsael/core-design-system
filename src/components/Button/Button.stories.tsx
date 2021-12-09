@@ -37,3 +37,10 @@ Small.args = {
 	size: "sm",
 	children: "Button",
 };
+
+export const IconButton = Template.bind({});
+IconButton.args = {
+	kind: "secondary",
+	children: "Button",
+	hasIcon: true
+};
