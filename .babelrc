@@ -4,5 +4,9 @@
     "@babel/preset-env",
     "@babel/preset-typescript"
   ],
-  "plugins": ["macros", "babel-plugin-styled-components"]
+  "plugins": [
+    "macros",
+    "babel-plugin-styled-components",
+    "babel-plugin-inline-react-svg"
+  ]
 }
