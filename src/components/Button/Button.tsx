@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Icon from "../../assets/icons/icon_24.svg";
 
 export interface ButtonProps {
-	kind?: "primary" | "secondary";
+	kind?: "primary" | "secondary" | "outline-primary";
 	size?: "sm" | "md" | "lg";
 	children?: ReactNode;
 	hasIcon?: boolean;
@@ -12,11 +12,13 @@ export interface ButtonProps {
 	onClick?: () => void;
 }
 
-const StyledButton = styled.button((props: ButtonProps) => [
-	tw`flex items-center px-8 py-2 transition duration-75 transform rounded-md focus:outline-none`,
-	props.kind === "secondary" ? tw`border border-yellow-600` : tw`text-white bg-blue-400`,
-	props.size === "sm" && tw`px-4 text-sm`,
-	props.size === "lg" && tw`px-12 py-3`,
+const StyledButton = styled.button(({ kind, size }: ButtonProps) => [
+	tw`flex items-center px-6 py-2 rounded-lg appearance-none focus:outline-none`,
+	kind === "primary" && tw`text-white bg-primary hover:bg-primary-lighter active:bg-primary-darker focus:(ring ring-primary-subtle)`,
+	kind === "outline-primary" && tw`text-primary bg-white border border-primary focus:(ring ring-primary-subtle)`,
+	kind === "secondary" && tw`border border-gray-200`,
+	size === "sm" && tw`px-4 text-sm`,
+	size === "lg" && tw`px-12 py-3`,
 ]);
 
 const IconContainer = styled.div(() => [

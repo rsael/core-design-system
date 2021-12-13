@@ -19,6 +19,11 @@ Primary.args = {
 	kind: "primary",
 	children: "Button",
 };
+export const PrimaryOutline = Template.bind({});
+PrimaryOutline.args = {
+	kind: "outline-primary",
+	children: "Button",
+};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
