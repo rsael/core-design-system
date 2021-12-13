@@ -19,6 +19,7 @@ Primary.args = {
 	kind: "primary",
 	children: "Button",
 };
+
 export const PrimaryOutline = Template.bind({});
 PrimaryOutline.args = {
 	kind: "outline-primary",
@@ -31,17 +32,18 @@ Secondary.args = {
 	children: "Button",
 };
 
-export const Large = Template.bind({});
-Large.args = {
-	size: "lg",
+export const Affirmative = Template.bind({});
+Affirmative.args = {
+	kind: "affirmative",
 	children: "Button",
 };
 
-export const Small = Template.bind({});
-Small.args = {
-	size: "sm",
+export const Negative = Template.bind({});
+Negative.args = {
+	kind: "negative",
 	children: "Button",
 };
+
 
 export const IconButton = Template.bind({});
 IconButton.args = {
