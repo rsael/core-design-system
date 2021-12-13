@@ -1,19 +1,21 @@
-import React, { ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import Icon from "../../assets/icons/icon_24.svg";
 
 export interface ButtonProps {
-	kind?: "primary" | "secondary" | "outline-primary" | "affirmative" | "negative";
+	kind?: "primary" | "secondary" | "outline-primary" | "affirmative" | "negative" | "icon";
 	size?: "sm" | "md" | "lg";
 	children?: ReactNode;
 	hasIcon?: boolean;
 	icon?: ReactNode;
 	onClick?: () => void;
+	disabled: boolean;
 }
 
-const StyledButton = styled.button(({ kind, size }: ButtonProps) => [
-	tw`flex items-center px-6 py-2 rounded-lg appearance-none focus:outline-none`,
+const StyledButton = styled.button(({ kind, size, disabled }: ButtonProps) => [
+	tw`flex items-center appearance-none focus:outline-none`,
+	kind === "icon" ? tw`p-3 bg-white shadow-lg focus:(ring ring-primary-subtle) rounded-full` : tw`px-6 py-2 rounded-lg`,
 	kind === "primary" && tw`text-white bg-primary hover:bg-primary-lighter active:bg-primary-darker focus:(ring ring-primary-subtle)`,
 	kind === "outline-primary" && tw`text-primary bg-white border border-primary focus:(ring ring-primary-subtle)`,
 	kind === "secondary" && tw`border border-gray-200`,
@@ -21,6 +23,7 @@ const StyledButton = styled.button(({ kind, size }: ButtonProps) => [
 	kind === "negative" && tw`text-white bg-red-300 hover:bg-red-200 active:bg-red-400 focus:(ring ring-red-100)`,
 	size === "sm" && tw`px-4 text-sm`,
 	size === "lg" && tw`px-12 py-3`,
+	disabled && tw`text-gray-400 bg-gray-100 hover:(text-gray-400 bg-gray-100)`
 ]);
 
 const IconContainer = styled.div(() => [
@@ -28,15 +31,27 @@ const IconContainer = styled.div(() => [
 ]);
 
 
-const Button = ({ children, hasIcon, icon, ...props }: ButtonProps): JSX.Element => {
+const Button = ({ children, hasIcon, icon, kind, disabled, ...props }: ButtonProps): JSX.Element => {
 	return (
-		<StyledButton {...props}>
-			{hasIcon &&
-				<IconContainer>
+		<StyledButton
+			kind={kind}
+			disabled={disabled}
+			{...props}
+		>
+			{kind === "icon" ? (
+				<Fragment>
 					{icon ? icon : <Icon />}
-				</IconContainer>
-			}
-			{children || "Button"}
+				</Fragment>
+			) : (
+				<Fragment>
+					{hasIcon &&
+						<IconContainer>
+							{icon ? icon : <Icon />}
+						</IconContainer>
+					}
+					{children || "Button"}
+				</Fragment>
+			)}
 		</StyledButton>
 	);
 };
@@ -44,7 +59,8 @@ const Button = ({ children, hasIcon, icon, ...props }: ButtonProps): JSX.Element
 Button.defaultProps = {
 	size: "md",
 	kind: "primary",
-	hasIcon: false
+	hasIcon: false,
+	disabled: false
 };
 
 export default Button;

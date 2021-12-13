@@ -44,10 +44,21 @@ Negative.args = {
 	children: "Button",
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+	disabled: true,
+	children: "Button"
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+	kind: "secondary",
+	children: "Button",
+	hasIcon: true
+};
 
 export const IconButton = Template.bind({});
 IconButton.args = {
-	kind: "secondary",
-	children: "Button",
+	kind: "icon",
 	hasIcon: true
 };
