@@ -2,6 +2,7 @@ import React, { Fragment, ReactNode } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import Icon from "../../assets/icons/icon_24.svg";
+import Spinner from "../Spinner";
 
 export interface ButtonProps {
 	kind?: "primary" | "secondary" | "outline-primary" | "affirmative" | "negative" | "icon";
@@ -10,7 +11,8 @@ export interface ButtonProps {
 	hasIcon?: boolean;
 	icon?: ReactNode;
 	onClick?: () => void;
-	disabled: boolean;
+	disabled?: boolean;
+	loading?: boolean;
 }
 
 const StyledButton = styled.button(({ kind, size, disabled }: ButtonProps) => [
@@ -31,7 +33,7 @@ const IconContainer = styled.div(() => [
 ]);
 
 
-const Button = ({ children, hasIcon, icon, kind, disabled, ...props }: ButtonProps): JSX.Element => {
+const Button = ({ children, hasIcon, icon, kind, disabled, loading, ...props }: ButtonProps): JSX.Element => {
 	return (
 		<StyledButton
 			kind={kind}
@@ -40,16 +42,35 @@ const Button = ({ children, hasIcon, icon, kind, disabled, ...props }: ButtonPro
 		>
 			{kind === "icon" ? (
 				<Fragment>
-					{icon ? icon : <Icon />}
+					{loading ? (
+						<Fragment>
+							<Spinner />
+						</Fragment>
+					) : (
+						<Fragment>
+							{icon ? icon : <Icon />}
+						</Fragment>
+					)}
 				</Fragment>
 			) : (
 				<Fragment>
-					{hasIcon &&
-						<IconContainer>
-							{icon ? icon : <Icon />}
-						</IconContainer>
-					}
-					{children || "Button"}
+					{loading ? (
+						<Fragment>
+							<IconContainer>
+								<Spinner />
+							</IconContainer>
+							<span>loading</span>
+						</Fragment>
+					) : (
+						<Fragment>
+							{hasIcon &&
+								<IconContainer>
+									{icon ? icon : <Icon />}
+								</IconContainer>
+							}
+							{children || "Button"}
+						</Fragment>
+					)}
 				</Fragment>
 			)}
 		</StyledButton>
@@ -60,7 +81,8 @@ Button.defaultProps = {
 	size: "md",
 	kind: "primary",
 	hasIcon: false,
-	disabled: false
+	disabled: false,
+	loading: false
 };
 
 export default Button;

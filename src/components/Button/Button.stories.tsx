@@ -60,5 +60,19 @@ WithIcon.args = {
 export const IconButton = Template.bind({});
 IconButton.args = {
 	kind: "icon",
-	hasIcon: true
 };
+
+
+export const Loading = Template.bind({});
+Loading.args = {
+	kind: "primary",
+	loading: true,
+	children: "loading",
+};
+
+export const IconButtonLoading = Template.bind({});
+IconButtonLoading.args = {
+	kind: "icon",
+	loading: true
+};
+
