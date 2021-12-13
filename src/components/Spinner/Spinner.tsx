@@ -8,7 +8,7 @@ const StyledSpinner = styled.div(() => [
 
 const Spinner = (): JSX.Element => {
 	return (
-		<StyledSpinner />
+		<StyledSpinner role="alert" />
 	);
 };
 
