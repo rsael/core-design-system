@@ -11,11 +11,12 @@ import {
 
 export interface AlertProps {
     kind: "primary" | "affirmative" | "negative" | "warning";
-    children?: ReactNode;
-    message?: string;
-    onClose?: () => void;
     role?: AriaRole;
+    message?: string;
     visible?: boolean;
+    onClose?: () => void;
+    children?: ReactNode;
+    hideCloseButton?: boolean;
 }
 
 const StyledAlert = styled.div(({ kind, visible }: AlertProps) => [
@@ -30,12 +31,13 @@ const StyledAlert = styled.div(({ kind, visible }: AlertProps) => [
 const Container = styled.div(() => [tw`flex place-items-center`]);
 
 const Alert = ({
-    children,
     kind,
-    message,
-    onClose,
     role,
+    message,
     visible,
+    onClose,
+    children,
+    hideCloseButton,
     ...props
 }: AlertProps): JSX.Element => {
     // alert close handler
@@ -56,7 +58,7 @@ const Alert = ({
                         <FiCheckCircle size={18} tw="text-green-300 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    <FiX onClick={() => handleClose()} />
+                    {!hideCloseButton && <FiX onClick={() => handleClose()} />}
                 </StyledAlert>
             );
         }
@@ -72,7 +74,7 @@ const Alert = ({
                         <FiXCircle size={18} tw="text-red-300 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    <FiX onClick={() => handleClose()} />
+                    {!hideCloseButton && <FiX onClick={() => handleClose()} />}
                 </StyledAlert>
             );
         }
@@ -88,7 +90,7 @@ const Alert = ({
                         <FiAlertTriangle size={18} tw="text-yellow-400 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    <FiX onClick={() => handleClose()} />
+                    {!hideCloseButton && <FiX onClick={() => handleClose()} />}
                 </StyledAlert>
             );
         }
@@ -104,7 +106,7 @@ const Alert = ({
                         <FiAlertCircle size={18} tw="text-primary mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    <FiX onClick={() => handleClose()} />
+                    {!hideCloseButton && <FiX onClick={() => handleClose()} />}
                 </StyledAlert>
             );
         }
@@ -114,7 +116,8 @@ const Alert = ({
 Alert.defaultProps = {
     kind: "primary",
     role: "alert",
-    visible: true
+    visible: true,
+    hideClosebutton: false
 };
 
 export default Alert;
