@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Alert from "./Alert";
+import Button from "../Button";
 
 export default {
     title: "Example/Alert",
@@ -35,4 +36,25 @@ export const Warning = Template.bind({});
 Warning.args = {
     kind: "warning",
     message: "Warning text here so you can be more careful"
+};
+
+export const CTA = Template.bind({});
+CTA.args = {
+    message: "Some text with CTA button",
+    actions: <Button kind="outline-primary" />
+};
+
+export const Stateful = () => {
+    const [visible, setVisible] = useState(true);
+    // demo handler for visible toggle
+    function handleClose() {
+        setVisible(!visible);
+    }
+    return (
+        <Alert
+            message="This is a stateful alert with visibility controls"
+            isVisible={visible}
+            onClose={() => handleClose()}
+        />
+    );
 };

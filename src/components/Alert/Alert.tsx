@@ -1,4 +1,4 @@
-import React, { AriaRole, ReactNode, MouseEvent, useState } from "react";
+import React, { AriaRole, ReactNode, isValidElement } from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import {
@@ -17,6 +17,7 @@ export interface AlertProps {
     onClose?: () => void;
     children?: ReactNode;
     hideCloseButton?: boolean;
+    actions?: ReactNode;
 }
 
 const StyledAlert = styled.div(({ kind, isVisible }: AlertProps) => [
@@ -29,11 +30,13 @@ const StyledAlert = styled.div(({ kind, isVisible }: AlertProps) => [
 ]);
 
 const Container = styled.div(() => [tw`flex place-items-center`]);
+const AlertActions = styled(Container)(() => [tw`mr-4`]);
 
 const Alert = ({
     kind,
     role,
     message,
+    actions,
     isVisible,
     onClose,
     children,
@@ -59,9 +62,18 @@ const Alert = ({
                         <FiCheckCircle size={18} tw="text-green-300 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    {!hideCloseButton && (
-                        <FiX onClick={() => handleClose()} title="close" />
-                    )}
+                    <Container>
+                        {actions && isValidElement(actions) && (
+                            <AlertActions>{actions}</AlertActions>
+                        )}
+                        {!hideCloseButton && (
+                            <FiX
+                                tw="cursor-pointer"
+                                onClick={() => handleClose()}
+                                title="close"
+                            />
+                        )}
+                    </Container>
                 </StyledAlert>
             );
         }
@@ -78,9 +90,18 @@ const Alert = ({
                         <FiXCircle size={18} tw="text-red-300 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    {!hideCloseButton && (
-                        <FiX onClick={() => handleClose()} title="close" />
-                    )}
+                    <Container>
+                        {actions && isValidElement(actions) && (
+                            <AlertActions>{actions}</AlertActions>
+                        )}
+                        {!hideCloseButton && (
+                            <FiX
+                                tw="cursor-pointer"
+                                onClick={() => handleClose()}
+                                title="close"
+                            />
+                        )}
+                    </Container>
                 </StyledAlert>
             );
         }
@@ -97,9 +118,18 @@ const Alert = ({
                         <FiAlertTriangle size={18} tw="text-yellow-400 mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    {!hideCloseButton && (
-                        <FiX onClick={() => handleClose()} title="close" />
-                    )}
+                    <Container>
+                        {actions && isValidElement(actions) && (
+                            <AlertActions>{actions}</AlertActions>
+                        )}
+                        {!hideCloseButton && (
+                            <FiX
+                                tw="cursor-pointer"
+                                onClick={() => handleClose()}
+                                title="close"
+                            />
+                        )}
+                    </Container>
                 </StyledAlert>
             );
         }
@@ -116,9 +146,18 @@ const Alert = ({
                         <FiAlertCircle size={18} tw="text-primary mr-8" />
                         {message || children || "Alert"}
                     </Container>
-                    {!hideCloseButton && (
-                        <FiX onClick={() => handleClose()} title="close" />
-                    )}
+                    <Container>
+                        {actions && isValidElement(actions) && (
+                            <AlertActions>{actions}</AlertActions>
+                        )}
+                        {!hideCloseButton && (
+                            <FiX
+                                tw="cursor-pointer"
+                                onClick={() => handleClose()}
+                                title="close"
+                            />
+                        )}
+                    </Container>
                 </StyledAlert>
             );
         }
