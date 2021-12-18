@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Alert from "./Alert";
+import Button from "../Button";
 
 describe("Alert", () => {
     test("should render primary Alert", () => {
@@ -38,5 +39,11 @@ describe("Alert", () => {
         render(<Alert hideCloseButton />);
         const alert = screen.queryByTitle("close");
         expect(alert).not.toBeInTheDocument();
+    });
+
+    test("should have CTA button", () => {
+        render(<Alert actions={<Button />} />);
+        const alert = screen.getByRole("button");
+        expect(alert).toBeInTheDocument();
     });
 });
