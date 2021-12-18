@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Alert from "./Alert";
-import Button from "../Button";
+import InlineAlert from "./InlineAlert";
+import Button from "../../Button";
 
 export default {
-    title: "Example/Alert",
-    component: Alert,
+    title: "Example/InlineAlert",
+    component: InlineAlert,
     argTypes: {
         onClose: { action: "clicked" }
     }
-} as ComponentMeta<typeof Alert>;
+} as ComponentMeta<typeof InlineAlert>;
 
-const Template: ComponentStory<typeof Alert> = (args) => <Alert {...args} />;
+const Template: ComponentStory<typeof InlineAlert> = (args) => (
+    <InlineAlert {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -51,7 +53,7 @@ export const Stateful = () => {
         setVisible(!visible);
     }
     return (
-        <Alert
+        <InlineAlert
             message="This is a stateful alert with visibility controls"
             isVisible={visible}
             onClose={() => handleClose()}

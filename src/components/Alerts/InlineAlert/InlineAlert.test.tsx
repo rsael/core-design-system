@@ -1,48 +1,48 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Alert from "./Alert";
-import Button from "../Button";
+import InlineAlert from "./InlineAlert";
+import Button from "../../Button";
 
-describe("Alert", () => {
+describe("InlineAlert", () => {
     test("should render primary Alert", () => {
-        render(<Alert />);
+        render(<InlineAlert />);
         const alert = screen.getByRole("alert");
         expect(alert).toHaveAttribute("kind", "primary");
     });
 
     test("should render warning Alert", () => {
-        render(<Alert kind="warning" />);
+        render(<InlineAlert kind="warning" />);
         const alert = screen.getByRole("alert");
         expect(alert).toHaveAttribute("kind", "warning");
     });
 
     test("should render affirmative Alert", () => {
-        render(<Alert kind="affirmative" />);
+        render(<InlineAlert kind="affirmative" />);
         const alert = screen.getByRole("alert");
         expect(alert).toHaveAttribute("kind", "affirmative");
     });
 
     test("should render negative Alert", () => {
-        render(<Alert kind="negative" />);
+        render(<InlineAlert kind="negative" />);
         const alert = screen.getByRole("alert");
         expect(alert).toHaveAttribute("kind", "negative");
     });
 
     test("should hide alert ", () => {
-        render(<Alert isVisible={false} />);
+        render(<InlineAlert isVisible={false} />);
         const alert = screen.getByRole("alert", { hidden: true });
         expect(alert).not.toBeVisible();
     });
 
     test("should hide close button", () => {
-        render(<Alert hideCloseButton />);
+        render(<InlineAlert hideCloseButton />);
         const alert = screen.queryByTitle("close");
         expect(alert).not.toBeInTheDocument();
     });
 
     test("should have CTA button", () => {
-        render(<Alert actions={<Button />} />);
+        render(<InlineAlert actions={<Button />} />);
         const alert = screen.getByRole("button");
         expect(alert).toBeInTheDocument();
     });

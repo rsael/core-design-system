@@ -9,7 +9,7 @@ import {
     FiAlertTriangle
 } from "react-icons/fi";
 
-export interface AlertProps {
+export interface InlineAlertProps {
     kind: "primary" | "affirmative" | "negative" | "warning";
     role?: AriaRole;
     message?: string;
@@ -20,7 +20,7 @@ export interface AlertProps {
     actions?: ReactNode;
 }
 
-const StyledAlert = styled.div(({ kind, isVisible }: AlertProps) => [
+const StyledAlert = styled.div(({ kind, isVisible }: InlineAlertProps) => [
     tw`flex items-center justify-between px-6 py-4 text-base font-medium border-l-4 appearance-none`,
     kind === "primary" && tw`border-primary bg-primary-subtle`,
     kind === "affirmative" && tw`bg-green-100 border-green-300 `,
@@ -32,7 +32,7 @@ const StyledAlert = styled.div(({ kind, isVisible }: AlertProps) => [
 const Container = styled.div(() => [tw`flex place-items-center`]);
 const AlertActions = styled(Container)(() => [tw`mr-4`]);
 
-const Alert = ({
+const InlineAlert = ({
     kind,
     role,
     message,
@@ -42,7 +42,7 @@ const Alert = ({
     children,
     hideCloseButton,
     ...props
-}: AlertProps): JSX.Element => {
+}: InlineAlertProps): JSX.Element => {
     // alert close handler
     function handleClose() {
         onClose ? onClose() : null;
@@ -164,11 +164,11 @@ const Alert = ({
     }
 };
 
-Alert.defaultProps = {
+InlineAlert.defaultProps = {
     kind: "primary",
     role: "alert",
     isVisible: true,
     hideClosebutton: false
 };
 
-export default Alert;
+export default InlineAlert;
