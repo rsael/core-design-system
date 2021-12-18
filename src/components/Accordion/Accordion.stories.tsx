@@ -5,10 +5,7 @@ import Accordion from "./Accordion";
 
 export default {
     title: "Example/Accordion",
-    component: Accordion,
-    argTypes: {
-        onClick: { action: "clicked" }
-    }
+    component: Accordion
 } as ComponentMeta<typeof Accordion>;
 
 const Template: ComponentStory<typeof Accordion> = (args) => (
